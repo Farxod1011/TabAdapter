@@ -1,13 +1,10 @@
 package uz.farxod.tabadapter
 
-import android.media.audiofx.Equalizer.Settings
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayoutMediator
 import uz.farxod.tabadapter.databinding.ActivityMainBinding
-import uz.farxod.tabadapter.fragments.CallsFragment
-import uz.farxod.tabadapter.fragments.HomeFragment
-import uz.farxod.tabadapter.fragments.SettingsFragment
+import uz.farxod.tabadapter.fragments.ListFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,9 +15,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val tabAdapter = TabAdapter(this)
-        tabAdapter.addFragment(HomeFragment(), "Home")
-        tabAdapter.addFragment(CallsFragment(), "Calls")
-        tabAdapter.addFragment(SettingsFragment(), "Settings")
+
+        tabAdapter.addFragment(ListFragment.newInctance(0), "Animals")
+        tabAdapter.addFragment(ListFragment.newInctance(1), "Cars")
+
 
         binding.viewPager.adapter = tabAdapter
         binding.viewPager.currentItem = 0   // default, по умолчанию da shu oyna chiqib turishi uchun
@@ -30,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             tab.text = tabAdapter.getTabTitle(position)
         }.attach()
 
-        binding.viewPager.isUserInputEnabled = false // qo'lda svayp qilish imkoni o'chadi
+    //    binding.viewPager.isUserInputEnabled = false // qo'lda svayp qilish imkoni o'chadi
     }
+
 }
